@@ -24,20 +24,12 @@
   users.ldap.nsswitch = false;
 
   systemd.services.dbus.serviceConfig = {
-    CapabilityBoundingSet = "";
     IPAddressDeny = "any";
     LockPersonality = "yes";
-    MemoryDenyWriteExecute = "yes";
     NoNewPrivileges = "yes";
-    PrivateMounts = "yes";
-    PrivateNetwork = "yes";
-    PrivateTmp = "yes";
-    PrivateUsers = "yes";
     ProtectControlGroups = "yes";
-    ProtectHome = "yes";
     ProtectKernelModules = "yes";
     ProtectKernelTunables = "yes";
-    ProtectSystem = "strict";
     RestrictRealtime = "yes";
     UMask = "0077";
   };
