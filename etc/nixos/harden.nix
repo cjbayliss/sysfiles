@@ -34,19 +34,6 @@
     UMask = "0077";
   };
 
-  # hardening this service is hard due to agetty spawning everything for the
-  # user environment. NOTE: ping(8) does not work with this config
-  systemd.services."getty@".serviceConfig = {
-    IPAddressDeny = "any";
-    LockPersonality = "yes";
-    NoNewPrivileges = "yes";
-    ProtectControlGroups = "yes";
-    ProtectKernelModules = "yes";
-    ProtectKernelTunables = "yes";
-    RestrictRealtime = "yes";
-    UMask = "0077";
-  };
-
   systemd.services.podman.serviceConfig = {
     CapabilityBoundingSet = "";
     IPAddressDeny = "any";
