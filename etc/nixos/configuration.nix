@@ -15,6 +15,12 @@
     auto-optimise-store = true;
   };
 
+  fileSystems."/home/cjb/.local/cache" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "size=2G" "mode=777" ];
+  };
+
   services.resolved = {
     enable = true;
     dnssec = "true";
