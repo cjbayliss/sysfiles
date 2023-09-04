@@ -16,12 +16,24 @@
   # don't disable multi-threading (yeah, ik multi-threading has risks)
   #security.allowSimultaneousMultithreading = true;
 
+  # don't use sudo. this is a debatable change, but the attack surface of doas
+  # is greatly reduced compared to sudo
+  security.sudo.enable = false;
+  security.doas = {
+    enable = true;
+    extraRules = [{
+      groups = [ "wheel" ];
+      persist = true;
+    }];
+  };
+
   # TODO: finish the job cjb!
   # harden systemd services. See: systemd-analyze security start by
   # disabling any service and deps that we don't need:
   system.nssModules = lib.mkForce [ ];
   services.nscd.enable = false;
   users.ldap.nsswitch = false;
+  services.logrotate.enable = false;
 
   systemd.services.dbus.serviceConfig = {
     IPAddressDeny = "any";

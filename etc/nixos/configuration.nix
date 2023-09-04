@@ -166,8 +166,12 @@
     ];
     fontconfig = {
       defaultFonts.emoji = [ "Noto Color Emoji" ];
-      defaultFonts.monospace =
-        [ "Iosevka Fixed" "IPAGothic" "Baekmuk Gulim" "Noto Color Emoji" ];
+      defaultFonts.monospace = [
+        "Iosevka Fixed"
+        "IPAGothic"
+        "Baekmuk Gulim"
+        "Noto Color Emoji"
+      ];
       defaultFonts.sansSerif = [
         "Inter"
         "Liberation Sans"
