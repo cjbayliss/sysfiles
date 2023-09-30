@@ -57,7 +57,10 @@
     efibootmgr
     logiops
     xdg-desktop-portal-gtk
+    libimobiledevice
   ];
+
+  services.usbmuxd.enable = true;
 
   # for Logitech M720 mouse
   systemd.services.logid = {
