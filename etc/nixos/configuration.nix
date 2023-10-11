@@ -55,12 +55,31 @@
     # tools
     dconf
     efibootmgr
+    helix
+    libimobiledevice
     logiops
     xdg-desktop-portal-gtk
-    libimobiledevice
   ];
 
   services.usbmuxd.enable = true;
+
+  # Epomaker EP64 config
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "3151:4011" ];
+        settings = {
+          main = {
+            capslock = "overload(control, esc)";
+            leftmeta = "layer(alt)";
+            leftalt = "layer(meta)";
+            escape = "`";
+          };
+        };
+      };
+    };
+  };
 
   # for Logitech M720 mouse
   systemd.services.logid = {
@@ -163,7 +182,7 @@
   };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       (nerdfonts.override { fonts = [ "Iosevka" ]; })
       baekmuk-ttf
       inter

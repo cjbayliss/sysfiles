@@ -11,7 +11,7 @@
   security.lockKernelModules = false;
 
   # don't use the 'hardened' kernel
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # don't disable multi-threading (yeah, ik multi-threading has risks)
   #security.allowSimultaneousMultithreading = true;
