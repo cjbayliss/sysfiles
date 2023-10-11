@@ -16,10 +16,6 @@
 
   boot.kernelModules = [ "wacom" "acpi-call" "nvidia" ];
   boot.kernelParams = [ "threadirqs" "quiet" ];
-
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportRoot = false;
-
   boot.tmp.useTmpfs = true;
 
   # for low latency audio
@@ -69,40 +65,6 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.prime.offload.enable = false;
-
-  # limit GTX 1070 power draw to 105W
-  systemd.services.nvidia-power-limit = {
-    enable = true;
-    description = "Nvidia Power Limit (105W)";
-
-    unitConfig = {
-      After = [ "multi-user.target" ];
-      Wants = [ "multi-user.target" ];
-    };
-
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${config.hardware.nvidia.package.bin}/bin/nvidia-smi -pl 105";
-      ExecReload = "/bin/kill -HUP $MAINPID";
-      Restart = "no";
-
-      # lockdown the service
-      IPAddressDeny = "any";
-      LockPersonality = "yes";
-      MemoryDenyWriteExecute = "yes";
-      PrivateMounts = "yes";
-      PrivateNetwork = "yes";
-      PrivateTmp = "yes";
-      ProtectControlGroups = "yes";
-      ProtectHome = "yes";
-      ProtectKernelModules = "yes";
-      ProtectKernelTunables = "yes";
-      ProtectSystem = "strict";
-      UMask = "0077";
-    };
-
-    wantedBy = [ "graphical.target" ];
-  };
 
   programs.steam.enable = true;
 
