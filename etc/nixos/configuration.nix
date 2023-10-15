@@ -44,11 +44,10 @@
 
   powerManagement.cpuFreqGovernor = "ondemand";
 
-  programs.fish.enable = true;
   users.users.cjb = {
     isNormalUser = true;
     extraGroups = [ "audio" "wheel" "video" ];
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
   };
 
   environment.systemPackages = with pkgs; [
@@ -58,6 +57,7 @@
     helix
     libimobiledevice
     logiops
+    nushell
     xdg-desktop-portal-gtk
   ];
 
@@ -71,7 +71,7 @@
         ids = [ "3151:4011" ];
         settings = {
           main = {
-            capslock = "overload(control, esc)";
+            capslock = "esc";
             leftmeta = "layer(alt)";
             leftalt = "layer(meta)";
             escape = "`";
