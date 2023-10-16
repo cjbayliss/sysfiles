@@ -12,14 +12,12 @@
       touchpad.naturalScrolling = true;
     };
 
-    windowManager.xmonad = {
+    windowManager.qtile = {
       enable = true;
-      enableContribAndExtras = true;
-      # haskellPackages = unstable.haskellPackages;
     };
 
+    # needed to prevent NixOS from installing a display manager
     displayManager.sx.enable = true;
   };
 
-  services.picom.enable = true;
 }

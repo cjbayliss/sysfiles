@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   imports = [
     # hardware
@@ -75,6 +74,17 @@
             leftmeta = "layer(alt)";
             leftalt = "layer(meta)";
             escape = "`";
+          };
+
+          # since I remap alt to meta, C-A-f<NUMBER> doesn't work on this
+          # keyboard, so map C-A-<NUMBER> to C-A-f<NUMBER>
+          "control+alt" = {
+            "1" = "C-A-f1";
+            "2" = "C-A-f2";
+            "3" = "C-A-f3";
+            "4" = "C-A-f4";
+            "5" = "C-A-f5";
+            "6" = "C-A-f6";
           };
         };
       };
