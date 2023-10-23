@@ -2,9 +2,8 @@
 
 {
   imports = [
-    <nixos-hardware/common/gpu/nvidia>
     <nixos-hardware/common/cpu/intel>
-    <nixos-hardware/common/pc/hdd>
+    ./nvidia.nix
   ];
 
   boot.loader.systemd-boot = {
@@ -29,7 +28,6 @@
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "microcodeIntel"
-      "nvidia-settings"
       "nvidia-x11"
       "steam"
       "steam-original"
@@ -51,20 +49,7 @@
     dhcpcd.extraConfig = "nohook resolv.conf";
   };
 
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-    screenSection = ''
-      Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
-      Option         "AllowIndirectGLXProtocol" "off"
-      Option         "TripleBuffer" "on"
-    '';
-  };
-
   hardware.enableRedistributableFirmware = true;
-
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.powerManagement.enable = true;
-  hardware.nvidia.prime.offload.enable = false;
 
   programs.steam.enable = true;
 
