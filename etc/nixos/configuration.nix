@@ -56,12 +56,9 @@
     dconf
     efibootmgr
     helix
-    libimobiledevice
     logiops
     xdg-desktop-portal-gtk
   ];
-
-  services.usbmuxd.enable = true;
 
   # Epomaker EP64 config
   services.keyd = {
