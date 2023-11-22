@@ -44,10 +44,11 @@
 
   powerManagement.cpuFreqGovernor = "ondemand";
 
+  programs.fish.enable = true;
   users.users.cjb = {
     isNormalUser = true;
     extraGroups = [ "audio" "wheel" "video" ];
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
   };
 
   environment.systemPackages = with pkgs; [
@@ -57,7 +58,6 @@
     helix
     libimobiledevice
     logiops
-    nushell
     xdg-desktop-portal-gtk
   ];
 
