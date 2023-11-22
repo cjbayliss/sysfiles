@@ -12,6 +12,7 @@
 
   nix.settings = {
     auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   fileSystems."/home/cjb/.local/cache" = {
