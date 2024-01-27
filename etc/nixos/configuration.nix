@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     # hardware
     ./hardware-configuration.nix
@@ -12,13 +15,13 @@
 
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   fileSystems."/home/cjb/.local/cache" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "size=2G" "mode=777" ];
+    options = ["size=2G" "mode=777"];
   };
 
   services.resolved = {
@@ -28,7 +31,7 @@
       DNS=9.9.9.9
       DNSOverTLS=yes
     '';
-    fallbackDns = [ "149.112.112.112" ];
+    fallbackDns = ["149.112.112.112"];
   };
 
   environment.etc."issue".enable = false;
@@ -47,8 +50,8 @@
   programs.fish.enable = true;
   users.users.cjb = {
     isNormalUser = true;
-    extraGroups = [ "audio" "wheel" "video" ];
-    shell = pkgs.fish;
+    extraGroups = ["audio" "wheel" "video"];
+    shell = pkgs.nushell;
   };
 
   environment.systemPackages = with pkgs; [
@@ -56,16 +59,21 @@
     dconf
     efibootmgr
     helix
+    libimobiledevice
     logiops
     xdg-desktop-portal-gtk
   ];
+
+  services.usbmuxd.enable = true;
+
+  xdg.portal.config.common.default = "*";
 
   # Epomaker EP64 config
   services.keyd = {
     enable = true;
     keyboards = {
       default = {
-        ids = [ "3151:4011" ];
+        ids = ["3151:4011"];
         settings = {
           main = {
             capslock = "esc";
@@ -95,8 +103,8 @@
     description = "Logitech Configuration Daemon";
 
     unitConfig = {
-      After = [ "multi-user.target" ];
-      Wants = [ "multi-user.target" ];
+      After = ["multi-user.target"];
+      Wants = ["multi-user.target"];
     };
 
     serviceConfig = {
@@ -124,12 +132,12 @@
       UMask = "0077";
     };
 
-    wantedBy = [ "graphical.target" ];
+    wantedBy = ["graphical.target"];
   };
 
   services.flatpak.enable = true;
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   sound.enable = true;
   security.rtkit.enable = true;
@@ -144,6 +152,12 @@
 
   security.pam.loginLimits = [
     {
+      domain = "*";
+      item = "nofile";
+      type = "-";
+      value = "524288";
+    }
+    {
       domain = "@audio";
       item = "memlock";
       type = "-";
@@ -155,18 +169,17 @@
       type = "-";
       value = "99";
     }
-
     {
       domain = "@audio";
       item = "nofile";
       type = "soft";
-      value = "99999";
+      value = "524288";
     }
     {
       domain = "@audio";
       item = "nofile";
       type = "hard";
-      value = "99999";
+      value = "524288";
     }
   ];
 
@@ -191,7 +204,7 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Iosevka" ]; })
+      (nerdfonts.override {fonts = ["Iosevka"];})
       baekmuk-ttf
       inter
       iosevka-bin
@@ -201,7 +214,7 @@
       tenderness
     ];
     fontconfig = {
-      defaultFonts.emoji = [ "Noto Color Emoji" ];
+      defaultFonts.emoji = ["Noto Color Emoji"];
       defaultFonts.monospace = [
         "Iosevka Fixed"
         "IPAGothic"

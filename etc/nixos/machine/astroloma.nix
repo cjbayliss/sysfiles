@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     <nixos-hardware/common/cpu/intel>
     ./nvidia.nix
@@ -13,8 +16,8 @@
   boot.loader.timeout = 2;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelModules = [ "wacom" "acpi-call" "nvidia" ];
-  boot.kernelParams = [ "threadirqs" "quiet" ];
+  boot.kernelModules = ["wacom" "acpi-call" "nvidia"];
+  boot.kernelParams = ["threadirqs" "quiet"];
   boot.tmp.useTmpfs = true;
 
   # for low latency audio
@@ -42,7 +45,7 @@
     enableIPv6 = false;
     interfaces.eno1.useDHCP = true;
     interfaces.wlp5s0.useDHCP = true;
-    wireless.interfaces = [ "wlp5s0" ];
+    wireless.interfaces = ["wlp5s0"];
     wireless.enable = true;
 
     resolvconf.enable = lib.mkDefault false;
