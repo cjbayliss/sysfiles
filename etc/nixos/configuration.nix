@@ -51,7 +51,7 @@
   users.users.cjb = {
     isNormalUser = true;
     extraGroups = ["audio" "wheel" "video"];
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
   };
 
   environment.systemPackages = with pkgs; [
