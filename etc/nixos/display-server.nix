@@ -6,7 +6,7 @@
 }: {
   services.xserver = {
     enable = true;
-    layout = "us";
+    xkb.layout = "us";
     exportConfiguration = true;
 
     wacom.enable = true;
@@ -15,7 +15,6 @@
       touchpad.naturalScrolling = true;
     };
 
-    windowManager.qtile.enable = true;
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
