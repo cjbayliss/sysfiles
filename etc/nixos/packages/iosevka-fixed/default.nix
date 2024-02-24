@@ -5,13 +5,12 @@
   unzip,
 }:
 stdenvNoCC.mkDerivation rec {
-  pname = "iosevka-term";
-  # TODO: figure out the newest version that doesn't have emoji
-  version = "2.3.3";
+  pname = "iosevka-fixed";
+  version = "22.1.0"; # newest version without emoji
 
   src = fetchurl {
-    url = "https://github.com/be5invis/Iosevka/releases/download/v${version}/02-${pname}-${version}.zip";
-    hash = "sha256-APzmF0BfzNf79zFtrdP2s8yx4nbykQ6anN4S4/BYtNc=";
+    url = "https://github.com/be5invis/Iosevka/releases/download/v${version}/ttf-${pname}-${version}.zip";
+    hash = "sha256-15PFSh1N7jD1udr1edwEQdE7ifZKDMFq5vctOFzEoeQ=";
   };
 
   nativeBuildInputs = [unzip];
@@ -22,7 +21,7 @@ stdenvNoCC.mkDerivation rec {
 
   unpackPhase = ''
     mkdir -p $out/share/fonts
-    unzip -d $out/share/fonts/truetype $src "ttf/*.ttf"
+    unzip -d $out/share/fonts/truetype $src
   '';
 
   meta = with lib; {

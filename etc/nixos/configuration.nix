@@ -4,7 +4,7 @@
   ...
 }:
 with pkgs; let
-  iosevka-term = callPackage ./packages/iosevka {};
+  iosevka-fixed = callPackage ./packages/iosevka-fixed {};
 in {
   imports = [
     # hardware
@@ -208,7 +208,7 @@ in {
   fonts = {
     packages = with pkgs; [
       baekmuk-ttf
-      iosevka-term
+      iosevka-fixed
       ipafont
       liberation_ttf
       noto-fonts-emoji
@@ -216,7 +216,7 @@ in {
     fontconfig = {
       defaultFonts.emoji = ["Noto Color Emoji"];
       defaultFonts.monospace = [
-        "Iosevka Term"
+        "Iosevka Fixed"
         "IPAGothic"
         "Baekmuk Gulim"
         "Noto Color Emoji"
@@ -249,7 +249,7 @@ in {
           <alias binding="strong">
             <family>monospace</family>
             <prefer>
-              <family>Iosevka Term</family>
+              <family>Iosevka Fixed</family>
               <family>Noto Color Emoji</family>
             </prefer>
           </alias>
@@ -257,7 +257,7 @@ in {
           <alias binding="strong">
             <family>Iosevka</family>
             <prefer>
-              <family>Iosevka Term</family>
+              <family>Iosevka Fixed</family>
             </prefer>
           </alias>
 
