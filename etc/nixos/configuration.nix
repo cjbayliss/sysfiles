@@ -2,7 +2,10 @@
   config,
   pkgs,
   ...
-}: {
+}:
+with pkgs; let
+  iosevka-term = callPackage ./packages/iosevka {};
+in {
   imports = [
     # hardware
     ./hardware-configuration.nix
@@ -204,32 +207,27 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["Iosevka"];})
       baekmuk-ttf
-      inter
-      iosevka-bin
+      iosevka-term
       ipafont
       liberation_ttf
       noto-fonts-emoji
-      tenderness
     ];
     fontconfig = {
       defaultFonts.emoji = ["Noto Color Emoji"];
       defaultFonts.monospace = [
-        "Iosevka Fixed"
+        "Iosevka Term"
         "IPAGothic"
         "Baekmuk Gulim"
         "Noto Color Emoji"
       ];
       defaultFonts.sansSerif = [
-        "Inter"
         "Liberation Sans"
         "IPAGothic"
         "Baekmuk Gulim"
         "Noto Color Emoji"
       ];
       defaultFonts.serif = [
-        "Tenderness"
         "Liberation Serif"
         "IPAGothic"
         "Baekmuk Gulim"
@@ -247,6 +245,21 @@
               <const>hintfull</const>
             </edit>
           </match>
+
+          <alias binding="strong">
+            <family>monospace</family>
+            <prefer>
+              <family>Iosevka Term</family>
+              <family>Noto Color Emoji</family>
+            </prefer>
+          </alias>
+
+          <alias binding="strong">
+            <family>Iosevka</family>
+            <prefer>
+              <family>Iosevka Term</family>
+            </prefer>
+          </alias>
 
           <!-- ensure Emacs chooses the 'Regular' weight, not the 'Medium' one. -->
           <selectfont>
