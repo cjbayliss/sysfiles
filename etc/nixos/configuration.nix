@@ -207,32 +207,30 @@ in {
 
   fonts = {
     packages = with pkgs; [
-      baekmuk-ttf
-      d2coding
       iosevka-fixed
       ipafont
       liberation_ttf
+      nanum
       noto-fonts-emoji
     ];
     fontconfig = {
       defaultFonts.emoji = ["Noto Color Emoji"];
       defaultFonts.monospace = [
         "Iosevka Fixed"
-        "IPAGothic"
+        "NanumGothicCoding"
         "D2Coding"
-        "Baekmuk Gulim"
         "Noto Color Emoji"
       ];
       defaultFonts.sansSerif = [
         "Liberation Sans"
         "IPAGothic"
-        "Baekmuk Gulim"
+        "NanumGothic"
         "Noto Color Emoji"
       ];
       defaultFonts.serif = [
         "Liberation Serif"
-        "IPAGothic"
-        "Baekmuk Gulim"
+        "IPAMincho"
+        "NanumMyeongjo"
         "Noto Color Emoji"
       ];
       useEmbeddedBitmaps = true;
