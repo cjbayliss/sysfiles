@@ -208,6 +208,7 @@ in {
   fonts = {
     packages = with pkgs; [
       baekmuk-ttf
+      d2coding
       iosevka-fixed
       ipafont
       liberation_ttf
@@ -218,6 +219,7 @@ in {
       defaultFonts.monospace = [
         "Iosevka Fixed"
         "IPAGothic"
+        "D2Coding"
         "Baekmuk Gulim"
         "Noto Color Emoji"
       ];
