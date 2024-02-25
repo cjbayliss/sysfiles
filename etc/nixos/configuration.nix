@@ -206,6 +206,7 @@ in {
   };
 
   fonts = {
+    enableDefaultPackages = false;
     packages = with pkgs; [
       iosevka-fixed
       ipafont
@@ -213,7 +214,11 @@ in {
       nanum
       noto-fonts-emoji
     ];
+
     fontconfig = {
+      hinting.style = "full";
+      useEmbeddedBitmaps = true;
+
       defaultFonts.emoji = ["Noto Color Emoji"];
       defaultFonts.monospace = [
         "Iosevka Fixed"
@@ -233,19 +238,11 @@ in {
         "NanumMyeongjo"
         "Noto Color Emoji"
       ];
-      useEmbeddedBitmaps = true;
 
       localConf = ''
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
         <fontconfig>
-          <!-- AFAICT NixOS doesn't provide a way to set hintstyle -->
-          <match target="font">
-            <edit name="hintstyle" mode="assign">
-              <const>hintfull</const>
-            </edit>
-          </match>
-
           <alias binding="strong">
             <family>monospace</family>
             <prefer>
@@ -275,7 +272,6 @@ in {
             </rejectfont>
           </selectfont>
         </fontconfig>
-
       '';
     };
   };
