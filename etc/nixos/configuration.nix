@@ -222,21 +222,21 @@ in {
       defaultFonts.emoji = ["Noto Color Emoji"];
       defaultFonts.monospace = [
         "Iosevka Fixed"
+        "Noto Color Emoji"
         "NanumGothicCoding"
         "D2Coding"
-        "Noto Color Emoji"
       ];
       defaultFonts.sansSerif = [
         "Liberation Sans"
+        "Noto Color Emoji"
         "IPAGothic"
         "NanumGothic"
-        "Noto Color Emoji"
       ];
       defaultFonts.serif = [
         "Liberation Serif"
+        "Noto Color Emoji"
         "IPAMincho"
         "NanumMyeongjo"
-        "Noto Color Emoji"
       ];
 
       localConf = ''
@@ -247,6 +247,22 @@ in {
             <family>monospace</family>
             <prefer>
               <family>Iosevka Fixed</family>
+              <family>Noto Color Emoji</family>
+            </prefer>
+          </alias>
+
+          <alias binding="strong">
+            <family>sans-serif</family>
+            <prefer>
+              <family>Liberation Sans</family>
+              <family>Noto Color Emoji</family>
+            </prefer>
+          </alias>
+
+          <alias binding="strong">
+            <family>serif</family>
+            <prefer>
+              <family>Liberation Serif</family>
               <family>Noto Color Emoji</family>
             </prefer>
           </alias>
