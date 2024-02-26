@@ -212,6 +212,8 @@ in {
       ipafont
       liberation_ttf
       nanum
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-emoji
     ];
 
@@ -225,18 +227,33 @@ in {
         "Noto Color Emoji"
         "NanumGothicCoding"
         "D2Coding"
+        "Noto Mono CJK HK"
+        "Noto Mono CJK JP"
+        "Noto Mono CJK KR"
+        "Noto Mono CJK SC"
+        "Noto Mono CJK TC"
       ];
       defaultFonts.sansSerif = [
         "Liberation Sans"
         "Noto Color Emoji"
         "IPAGothic"
         "NanumGothic"
+        "Noto Sans CJK HK"
+        "Noto Sans CJK JP"
+        "Noto Sans CJK KR"
+        "Noto Sans CJK SC"
+        "Noto Sans CJK TC"
       ];
       defaultFonts.serif = [
         "Liberation Serif"
         "Noto Color Emoji"
         "IPAMincho"
         "NanumMyeongjo"
+        "Noto Serif CJK HK"
+        "Noto Serif CJK JP"
+        "Noto Serif CJK KR"
+        "Noto Serif CJK SC"
+        "Noto Serif CJK TC"
       ];
 
       localConf = ''
