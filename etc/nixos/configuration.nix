@@ -212,6 +212,7 @@ in {
       ipafont
       liberation_ttf
       nanum
+      noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-emoji
@@ -232,6 +233,7 @@ in {
         "Noto Mono CJK KR"
         "Noto Mono CJK SC"
         "Noto Mono CJK TC"
+        "Noto Mono"
       ];
       defaultFonts.sansSerif = [
         "Liberation Sans"
@@ -243,6 +245,7 @@ in {
         "Noto Sans CJK KR"
         "Noto Sans CJK SC"
         "Noto Sans CJK TC"
+        "Noto Sans"
       ];
       defaultFonts.serif = [
         "Liberation Serif"
@@ -254,6 +257,7 @@ in {
         "Noto Serif CJK KR"
         "Noto Serif CJK SC"
         "Noto Serif CJK TC"
+        "Noto Serif"
       ];
 
       localConf = ''
