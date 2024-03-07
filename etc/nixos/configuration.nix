@@ -19,6 +19,7 @@ in {
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes"];
+    use-xdg-base-directories = true;
   };
 
   fileSystems."/home/cjb/.local/cache" = {
@@ -314,4 +315,32 @@ in {
   };
 
   gtk.iconCache.enable = true;
+
+  environment.variables = {
+    HISTFILE = "$XDG_DATA_HOME/history";
+  };
+
+  programs.bash = {
+    # better history
+    shellInit = ''
+      shopt -s histappend
+      HISTCONTROL=ignoreboth
+      HISTSIZE=-1
+      HISTFILESIZE=-1
+      HISTFILE="$XDG_DATA_HOME/bash-history"
+    '';
+
+    # better completion
+    interactiveShellInit = ''
+      bind "set menu-complete-display-prefix on"
+      bind "set show-all-if-ambiguous on"
+      bind "set completion-query-items 0"
+      bind "TAB:menu-complete"
+      bind "\"\e[Z\": menu-complete-backward"
+    '';
+
+    promptInit = ''
+      PS1="\[\e[0m\]''\${HOSTNAME:=$ hostname} \[\e[96m\]\$(pwd | sed 's/\/home\/'$USER'/~/')\[\e[0m\]\[\e[95m\]\$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/')\[\e[35m\]\$(git status --porcelain 2>/dev/null | cut -c1,2 | sort -u | tr -d ' \n' | sed 's/^/ /')\[\e[0m\] » "
+    '';
+  };
 }
